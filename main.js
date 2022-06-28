@@ -10,7 +10,9 @@ const getRandom = () => {
 }
 
 const fillPosition = () => {
-  document.querySelector(`.button${getRandom()}`).innerHTML = `
+  let randomNumber = getRandom();
+  console.log(randomNumber);
+  document.querySelector(`.button${randomNumber}`).innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" width="85%" height="85%" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
       </svg>
@@ -20,9 +22,10 @@ const fillPosition = () => {
 const playTurn = (position) => {
   turnCount++;
   // console.log(position);
+  arrayPosition.splice(position-1, 1);
+  console.log(arrayPosition);
   if (turnCount % 2 === 0) {
     console.log("computer turn");
-    console.log("Numero random" + getRandom());
     setTimeout(function timeout() {
       fillPosition();
     }, 1000);
@@ -38,7 +41,7 @@ buttons.forEach(button => {
   //onclick event
   button.addEventListener('click', function(e) {
     e.preventDefault();
-    console.log(button.classList.value);
+    // console.log(button.classList.value);
     if(button.classList.contains('clicked')) {
       console.log("already clicked");
       return;
